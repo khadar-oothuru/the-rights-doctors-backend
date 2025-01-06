@@ -40,6 +40,12 @@ app.get('/person', async (req, res) => {
   }
 });
 
+app.get('/', (req, res) => {
+
+    res.send("hello server is running");
+
+});
+
 // POST /person
 app.post('/person', async (req, res) => {
   try {
