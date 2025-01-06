@@ -1,5 +1,5 @@
 
-
+require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 
 const connectDB = async () => {
   try {
-    await mongoose.connect('mongodb+srv://bashakhadar332:khadar@cluster0.mxrva.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'); 
+    await mongoose.connect(process.env.MONGO_URI);
     console.log('MongoDB Connected...');
   } catch (err) {
     console.error(err.message);
@@ -88,7 +88,7 @@ app.delete('/person/:id', async (req, res) => {
   }
 });
 
-app.listen(5000, () => {
-  console.log('Server running on port 5000');
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
 });
-
